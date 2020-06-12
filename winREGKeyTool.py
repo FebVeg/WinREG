@@ -41,10 +41,9 @@ cmdHKCU = 'REG Query HKCU%s /F %s /S > %s%s' % (searchSoftware, searchKeys, work
 
 # Inizio comando CMD
 try: 
-    print("\nSearching %s on HKLM.... Wait...." % (searchKeys))
+    print("Searching %s on HKLM.... Wait...." % (searchKeys))
     os.system(cmdHKLM)
-    print("Done")
-    print("\nSearching %s on HKCU.... Wait...." % (searchKeys))
+    print("Searching %s on HKCU.... Wait...." % (searchKeys))
     os.system(cmdHKCU)
     print("Done\n")
 except Exception as error:
