@@ -70,7 +70,7 @@ try:
             new_file = open(workDir + output_file_remastered, "a+")
             new_file.write(str(line) + "\n")
         else:
-            print("No DATA Found")
+            print("Data not valid or Data out of cope - ignore this message")
         if line.startswith('    HK'):
             line = line.strip()
             line = re.sub(r' \s.*$', '', line)
@@ -79,7 +79,7 @@ try:
             new_file = open(workDir + output_file_remastered, "a+")
             new_file.write(str(line) + "\n")
         else:
-            print("No DATA Found")
+            print("Data not valid or Data out of cope - ignore this message")
 
     print("Done")
     new_file.close()
@@ -99,7 +99,7 @@ try:
             new_file = open(workDir + output_file_remastered, "a+")
             new_file.write(str(line) + "\n")
         else:
-            print("No DATA found")
+            print("Data not valid or Data out of cope - ignore this message")
         if line.startswith('    HK'):
             line = line.strip()
             line = re.sub(r' \s.*$', '', line)
@@ -108,7 +108,7 @@ try:
             new_file = open(workDir + output_file_remastered, "a+")
             new_file.write(str(line) + "\n")
         else:
-            print("No DATA Found")
+            print("Data not valid or Data out of cope - ignore this message")
 
     print("Done")
     new_file.close()
