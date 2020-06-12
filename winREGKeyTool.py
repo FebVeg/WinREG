@@ -16,11 +16,11 @@ print("Username: " + username)
 print("Target: " + hostname)
 print("Working Directory: " + workDir)
 
-searchKeys = input("Type a string that you want search: ")
+searchKeys = input('Type a string that you want search: ')
 outputKeysNameHKLM = "regKeysHKLM_" + searchKeys + ".txt"
 outputKeysNameHKCU = "regKeysHKCU_" + searchKeys + ".txt"
 
-if os.path.exists(workDir + outputKeysNameHKLM) or os.path.exists(workDir + outputKeysNameHKCU):
+if os.path.exists(workDir + outputKeysNameHKLM) and os.path.exists(workDir + outputKeysNameHKCU):
     print("File already existing")
     remove = input("Remove? [y/n]: ")
     if remove == "y":
@@ -29,7 +29,7 @@ if os.path.exists(workDir + outputKeysNameHKLM) or os.path.exists(workDir + outp
             os.remove(workDir+outputKeysNameHKLM)
         except Exception as error:
             print(error)
-            print("Continue")
+            print("Please, ignore this error, don't worry :)")
             pass
     elif remove == "n":
         sys.exit()
@@ -37,7 +37,7 @@ if os.path.exists(workDir + outputKeysNameHKLM) or os.path.exists(workDir + outp
         print("Error")
         sys.exit()
 
-print("Output file: " + workDir + outputKeysNameHKLM)
+print("Output file: " + workDir + outputKeysNameHKLM.replace('"', ''))
 
 # Genero il comando CMD
 cmdHKLM = 'REG Query HKLM\Software /F %s /S > %s%s' % (searchKeys, workDir, outputKeysNameHKLM)
@@ -55,6 +55,11 @@ print("Done\n")
 # Fine comando CMD
 
 # Edito il file di output e lo riscrivo senza nuove linee e spazi
+#wait = input("Press [ENTER] to continue")
+
+outputKeysNameHKCU = outputKeysNameHKCU.replace('"', '')
+outputKeysNameHKLM = outputKeysNameHKLM.replace('"', '')
+
 print("Overwriting output without new lines or other special characters..")
 
 try:
@@ -66,7 +71,7 @@ try:
             line = line.strip()
             line = re.sub(r' \s.*$', '', line)
             string = line.replace("\n", "")
-            print(str(string))
+            print("Key found: " + str(string))
             new_file = open(workDir + output_file_remastered, "a+")
             new_file.write(str(line) + "\n")
         else:
@@ -75,7 +80,7 @@ try:
             line = line.strip()
             line = re.sub(r' \s.*$', '', line)
             string = line.replace("\n", "")
-            print(str(string))
+            print("Key found: " + str(string))
             new_file = open(workDir + output_file_remastered, "a+")
             new_file.write(str(line) + "\n")
         else:
@@ -95,7 +100,7 @@ try:
             line = line.strip()
             line = re.sub(r' \s.*$', '', line)
             string = line.replace("\n", "")
-            print(str(string))
+            print("Key found: " + str(string))
             new_file = open(workDir + output_file_remastered, "a+")
             new_file.write(str(line) + "\n")
         else:
@@ -104,7 +109,7 @@ try:
             line = line.strip()
             line = re.sub(r' \s.*$', '', line)
             string = line.replace("\n", "")
-            print(str(string))
+            print("Key found: " + str(string))
             new_file = open(workDir + output_file_remastered, "a+")
             new_file.write(str(line) + "\n")
         else:
