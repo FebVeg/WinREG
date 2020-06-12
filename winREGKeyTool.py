@@ -28,22 +28,10 @@ if searchSoftware == "y":
 elif searchSoftware == "n":
     searchSoftware = ""
 
-if os.path.exists(workDir + outputKeysNameHKLM) and os.path.exists(workDir + outputKeysNameHKCU):
-    print("File already existing")
-    remove = input("Remove? [y/n]: ")
-    if remove == "y":
-        try:
-            os.remove(workDir+outputKeysNameHKCU)
-            os.remove(workDir+outputKeysNameHKLM)
-        except Exception as error:
-            print(error)
-            print("Please, ignore this error, don't worry :)")
-            
-    elif remove == "n":
-        sys.exit()
-    else:
-        print("Error")
-        sys.exit()
+if os.path.exists(workDir + outputKeysNameHKLM):
+    print("File %s already existing" % (outputKeysNameHKLM))
+    print("File %s already existing" % (outputKeysNameHKCU))
+    sys.exit()
 
 print("Output file: " + workDir + outputKeysNameHKLM.replace('"', ''))
 
@@ -124,8 +112,9 @@ try:
 
     try:
         new_file.close()
-        print("Output saved: " + a1)
-        print("Output saved: " + a2)
+        if os.path.isfile(workDir + a1) and os.path.isfile(workDir + a2):
+            print("Output saved: " + a1)
+            print("Output saved: " + a2)
     except Exception as error:
         print("Nothing found, nothing to save")
     
