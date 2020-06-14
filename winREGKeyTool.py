@@ -1,9 +1,12 @@
-import os
-import subprocess
-import sys
-import time
-import re
-import threading
+try:
+    import os
+    import subprocess
+    import sys
+    import time
+    import re
+    import threading
+except Exception as error:
+    print("Library error: " + error)
 
 os.system("cls") # pulisco CMD
 
