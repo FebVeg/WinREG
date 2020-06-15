@@ -8,16 +8,18 @@ $KeyName = Read-Host "Enter Sub Key Name: "
 for (($i = 1); $i -lt 10; $i++)
 {
     $var = "\*"*$i
+    Write-Host "Searching under HKCU:$var the subkey $KeyName"
     Get-ItemProperty -Path HKCU:$var -Name "$KeyName" -ErrorAction SilentlyContinue
-    Write-Host "Cerco sotto HKCU:$var la sottochiave $KeyName"
 }
 Write-Host "Done for $KeyName"
 
 # Removing all subkeys...
+<#
 for (($i = 1); $i -lt 10; $i++)
 {
     $var = "\*"*$i
+    Write-Host "Removing under HKCU:$var the subkey $KeyName"
     Remove-ItemProperty -Path HKCU:$var -Name "*$KeyName*" -ErrorAction SilentlyContinue
-    Write-Host "Cerco sotto HKCU:$var"
 }
 Write-Host "All key of $KeyName are cleaned"
+#>
