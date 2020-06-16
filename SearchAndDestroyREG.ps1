@@ -4,12 +4,13 @@
 # this script can clean the registry after have uninstalled program
 
 $KeyName = Read-Host "Enter Sub Key Name"
+$Path = Read-Host "Enter HK Path (es. HKCU)"
 # Searching all SubKeys
 for (($i = 1); $i -lt 10; $i++)
 {
     $var = "\*"*$i
-    Write-Host "Searching under HKCU:$var the subkey $KeyName"
-    Get-ItemProperty -Path HKCU:$var -Name "*$KeyName*" -ErrorAction SilentlyContinue
+    Write-Host "Searching under $Path:$var the subkey $KeyName"
+    Get-ItemProperty -Path $Path:$var -Name "*$KeyName*" -ErrorAction SilentlyContinue
 }
 Write-Host "Done for $KeyName"
 
@@ -18,8 +19,8 @@ Write-Host "Done for $KeyName"
 for (($i = 1); $i -lt 10; $i++)
 {
     $var = "\*"*$i
-    Write-Host "Removing under HKCU:$var the subkey $KeyName"
-    Remove-ItemProperty -Path HKCU:$var -Name "*$KeyName*" -ErrorAction SilentlyContinue
+    Write-Host "Removing under $Path:$var the subkey $KeyName"
+    Remove-ItemProperty -Path $Path:$var -Name "*$KeyName*" -ErrorAction SilentlyContinue
 }
 Write-Host "All key of $KeyName are cleaned"
 #>
