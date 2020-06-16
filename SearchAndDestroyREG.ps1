@@ -4,15 +4,25 @@ Get-ChildItem -Path HKCU:\ -Recurse -Include "*$reg*" | Select-Object Name # Res
 # this script can clean the registry after have uninstalled program
 
 $KeyName = Read-Host "Enter Sub Key Name"
-#$Path = Read-Host "Enter HK Path (es. HKCU)"
+
 # Searching all SubKeys
+# searching on HKCU
 for (($i = 1); $i -lt 10; $i++)
 {
     $var = "\*"*$i
-    Write-Host "Searching under $Path:$var the subkey $KeyName"
-    Get-ItemProperty -Path $Path:$var -Name "*$KeyName*" -ErrorAction SilentlyContinue
+    Write-Host "Searching under HKCU:$var the subkey $KeyName"
+    Get-ItemProperty -Path HKCU:$var -Name "*$KeyName*" -ErrorAction SilentlyContinue
 }
-Write-Host "Done for $KeyName"
+Write-Host "Finished: HKCU - $KeyName"
+
+# searching on HKLM
+for (($i = 1); $i -lt 10; $i++)
+{
+    $var = "\*"*$i
+    Write-Host "Searching under HKLM:$var the subkey $KeyName"
+    Get-ItemProperty -Path HKLM:$var -Name "*$KeyName*" -ErrorAction SilentlyContinue
+}
+Write-Host "Finished: HKLM - $KeyName"
 
 # Removing all subkeys...
 <#
